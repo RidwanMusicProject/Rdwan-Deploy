@@ -1,19 +1,11 @@
-# Using Python Slim-Buster
-FROM kyyex/kyy-userbot:busterv2
-#━━━━━ Userbot Telegram ━━━━━
-#━━━━━ By Kayzu-Ubot ━━━━━
+FROM mrismanaziz/man-userbot:buster
 
-RUN apt-get update && apt-get upgrade -y
-RUN apt-get install ffmpeg -y
-RUN git clone -b Kayzu-Ubot https://github.com/Kayzyu/Kayzu-Ubot /root/userbot
-RUN mkdir /root/userbot/.bin
-RUN pip install --upgrade pip setuptools
-WORKDIR /root/userbot
+RUN git clone -b Rdwan-Userbot https://github.com/RidwanMusicProject/Rdwan-userbot /home/Rdwan-Userbot/ \
+    && chmod 777 /home/Rdwan-Userbot \
+    && mkdir /home/Rdwan-Userbot/bin/
 
-#Install python requirements
-RUN pip3 install -r https://raw.githubusercontent.com/Kayzyu/Kayzu-Ubot/Kayzu-Ubot/requirements.txt
+COPY ./sample_config.env ./config.env* /home/Rdwan-Userbot/
 
-EXPOSE 80 443
+WORKDIR /home/Rdwan-Userbot/
 
-# Finalization
 CMD ["python3", "-m", "userbot"]
